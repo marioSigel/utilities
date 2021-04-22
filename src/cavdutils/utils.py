@@ -5,14 +5,13 @@ import pygeohash as gh
 output_cols = ['entityid', 'address', 'confidence', 'geohash', 'lat', 'lng', 'source', 'verified']
 
 
-def normalize_output(df, source, entity_id):
+def normalize_output(df, entity_id):
     if not df:
         return empty_dataframe(columns=output_cols)
 
     return df.assign(
         entityid=entity_id,
         confidence=None,
-        source=source,
         geohash=df.apply(lambda row: gh.encode(row.lat, row.lon, precision=5), axis=1),
         verified=False,
     )[output_cols]

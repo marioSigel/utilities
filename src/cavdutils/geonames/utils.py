@@ -1,12 +1,12 @@
 
 import requests
 import pandas as pd
-
+from geopy import Point
 
 GEONAMES_URL = 'http://api.geonames.org'
 
 
-def query_geonames(company_name):
+def query_geonames(company_name, google):
     company_name = company_name.lower()
     addresses = {}
     codes = ['MFG', 'FCL', 'TOWR']  # codes from https://www.geonames.org/export/codes.html
@@ -33,5 +33,10 @@ def query_geonames(company_name):
     addresses = pd.DataFrame([[addresses[_id].get(k) for k in keys]
                               for _id in addresses],
                              columns=keys)
+
+    addresses = addresses.assign(
+        address=addresses.lat.combine(addresses.lng, lambda lat, lon: google.reverse(Point(lat, lon)).address),
+        source='places_apis'
+    )
 
     return addresses

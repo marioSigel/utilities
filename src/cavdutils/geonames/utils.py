@@ -35,7 +35,7 @@ def query_geonames(company_name, google):
                              columns=keys)
 
     addresses = addresses.assign(
-        address=addresses.lat.combine(addresses.lng, lambda lat, lon: google.reverse(Point(lat, lon)).address),
+        address=addresses.lat.combine(addresses.lng, lambda lat, lng: google.reverse(Point(lat, lng)).address),
         source='places_apis'
     )
 

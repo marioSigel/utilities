@@ -12,7 +12,7 @@ def normalize_output(df, entity_id):
     return df.assign(
         entityid=entity_id,
         confidence=None,
-        geohash=df.apply(lambda row: gh.encode(row.lat, row.lon, precision=5), axis=1),
+        geohash=df.apply(lambda row: gh.encode(row.lat, row.lng, precision=5), axis=1),
         verified=False,
     )[output_cols]
 

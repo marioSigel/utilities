@@ -10,16 +10,17 @@ def normalize_output(df, entity_id):
     if df is None:
         return empty_dataframe(columns=output_cols)
 
-    return df.assign(
+    df = df.assign(
         entityid=entity_id,
         confidence=None,
         verified=False,
         lat=pd.to_numeric(df.lat),
         lng=pd.to_numeric(df.lng)
-    ).assign(
+    )
+    df = df.assign(
         geohash=df.apply(lambda row: gh.encode(row.lat, row.lng, precision=5), axis=1),
     )[output_cols]
-
+    return df
 
 def empty_dataframe(index=None, columns=None, dtypes=None):
     """

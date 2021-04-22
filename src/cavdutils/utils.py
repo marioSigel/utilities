@@ -6,7 +6,7 @@ output_cols = ['entityid', 'address', 'confidence', 'geohash', 'lat', 'lng', 'so
 
 
 def normalize_output(df, entity_id):
-    if not df:
+    if df is None:
         return empty_dataframe(columns=output_cols)
 
     return df.assign(

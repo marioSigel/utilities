@@ -22,6 +22,7 @@ def normalize_output(df, entity_id):
     )[output_cols]
     return df
 
+
 def empty_dataframe(index=None, columns=None, dtypes=None):
     """
     Creates an empty DataFrame with proper columns and index names. Useful if callers rely on a certain interface.

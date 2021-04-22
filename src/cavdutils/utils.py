@@ -18,6 +18,9 @@ def query_geonames(company_name):
         res = res.json()['geonames']
         res = {x['geonameId']: x for x in res}
 
+        if not res:
+            return None
+
         addresses.update(res)
 
         addresses = {k: v for k, v in addresses.items() if any(

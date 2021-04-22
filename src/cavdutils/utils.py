@@ -1,5 +1,6 @@
 from pandas import DataFrame, MultiIndex
 import pygeohash as gh
+import pandas as pd
 
 
 output_cols = ['entityid', 'address', 'confidence', 'geohash', 'lat', 'lng', 'source', 'verified']
@@ -12,8 +13,11 @@ def normalize_output(df, entity_id):
     return df.assign(
         entityid=entity_id,
         confidence=None,
-        geohash=df.apply(lambda row: gh.encode(row.lat, row.lng, precision=5), axis=1),
         verified=False,
+        lat=pd.to_numeric(df.lat),
+        lng=pd.to_numeric(df.lng)
+    ).assign(
+        geohash=df.apply(lambda row: gh.encode(row.lat, row.lng, precision=5), axis=1),
     )[output_cols]
 
 

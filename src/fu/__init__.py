@@ -1,1 +1,1 @@
-from utils import fu5
+from fu.utils import fu5

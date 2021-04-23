@@ -49,3 +49,7 @@ def enter_key(placeholder='', description='Key'):
     )
     display(key_field)
     return key_field
+
+
+def concat_addresses(*dataframes):
+    return pd.concat(dataframes).reset_index(drop=True)

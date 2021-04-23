@@ -31,7 +31,7 @@ def query_google(company_name, google_apikey, country_codes=None, additional_key
                                d['geometry']['location']['lng']]
                                for d in all_res], columns=['name', 'address', 'lat', 'lng'])
 
-    addresses.assign(
+    addresses = addresses.assign(
         source='places_apis'
     )
 

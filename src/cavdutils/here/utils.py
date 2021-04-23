@@ -37,8 +37,8 @@ def query_here(company_name, here_apikey, lat, lng, additional_keywords=None):
                 any([i['name'] == cat for cat in excluded_categories])
                 for i in item.get('categories', [])])
             and (
-                company_name in item.get('title', '').lower() or
-                company_name in item.get('address', {}).get('label', '').lower())
+                company_name.lower() in item.get('title', '').lower() or
+                company_name.lower() in item.get('address', {}).get('label', '').lower())
             )]
 
     addresses = pd.DataFrame(

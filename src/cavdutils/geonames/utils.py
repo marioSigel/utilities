@@ -2,11 +2,14 @@
 import requests
 import pandas as pd
 from geopy import Point
+from cavdutils.map_services import get_geocoder
 
 GEONAMES_URL = 'http://api.geonames.org'
 
 
-def query_geonames(company_name, google):
+def query_geonames(company_name, google_apikey):
+    google = get_geocoder(google_apikey, 'google')
+
     company_name = company_name.lower()
     addresses = {}
     codes = ['MFG', 'FCL', 'TOWR']  # codes from https://www.geonames.org/export/codes.html

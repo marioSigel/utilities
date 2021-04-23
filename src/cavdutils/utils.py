@@ -4,6 +4,8 @@ import pandas as pd
 
 
 output_cols = ['entityid', 'address', 'confidence', 'geohash', 'lat', 'lng', 'source', 'verified']
+import ipywidgets as widgets
+from IPython.display import display
 
 
 def normalize_output(df, entity_id):
@@ -36,3 +38,14 @@ def empty_dataframe(index=None, columns=None, dtypes=None):
         index=MultiIndex.from_tuples([], names=index) if index is not None else None,
         columns=columns
     ).astype(dtypes)
+
+
+def enter_key(placeholder='', description='Key'):
+    key_field = widgets.Text(
+        value='',
+        placeholder='Enter Google API Key',
+        description='Key:',
+        disabled=False
+    )
+    display(key_field)
+    return key_field

@@ -22,5 +22,5 @@ setuptools.setup(
     package_dir={"": "src"},
     packages=setuptools.find_packages(where="src"),
     python_requires=">=3.7",
-    install_requires=['pygeohash']
+    install_requires=['pygeohash', 'pandas', 'jupyter']
 )

@@ -13,7 +13,7 @@ overpass_urls = [
 overpass_instances = [overpy.Overpass(url=_url) for _url in overpass_urls]
 
 
-def query_osm(company_name, overpass_instances, instance_id):
+def query_osm(company_name, instance_id=0):
     try:
         return overpass_instances[instance_id].query("""
             [out:json];

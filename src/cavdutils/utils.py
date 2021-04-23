@@ -40,11 +40,11 @@ def empty_dataframe(index=None, columns=None, dtypes=None):
     ).astype(dtypes)
 
 
-def enter_key(placeholder='', description='Key'):
+def enter_key(placeholder='', description='Key:'):
     key_field = widgets.Text(
         value='',
-        placeholder='Enter Google API Key',
-        description='Key:',
+        placeholder=placeholder,
+        description=description,
         disabled=False
     )
     display(key_field)
